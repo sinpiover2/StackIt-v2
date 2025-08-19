@@ -6,116 +6,37 @@
   <title>Stack It!</title>
   <meta name="description" content="Stack It! A student-friendly Tower of Hanoi variant.">
   <style>
-    :root { --shade: #b9c1cc; --ink:#111; --muted:#555; --bg:#fff; --accent:#2563eb; }
-    *{ box-sizing:border-box; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; color:var(--ink); background:var(--bg); line-height:1.45; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 1rem; }
-    h1 { margin: 0 0 .25rem; }
-    .note { font-size: .95rem; color: var(--muted); margin: 0 0 1rem; }
-    .card { border:1px solid var(--shade); border-radius:12px; padding:1rem; box-shadow:2px 2px 6px rgba(0,0,0,.06); background:#fff; }
-    .grid { display:grid; gap:1rem; }
-    @media (min-width: 720px){ .grid.two { grid-template-columns: 1.2fr 1fr; } }
-    details { border:1px dashed var(--shade); border-radius:10px; padding:.75rem .9rem; }
-    details+details{ margin-top:.75rem; }
-    summary { font-weight:700; cursor:pointer; }
-    .kicker { font-weight:700; }
-    .list-tight li{ margin:.3rem 0; }
-    .table { width:100%; border-collapse: collapse; font-size:.95rem; }
-    .table th,.table td{ border:1px solid #dfe3ea; padding:.5rem .6rem; text-align:left; }
-    .badge { display:inline-block; font-size:.8rem; padding:.15rem .45rem; border-radius:.5rem; background:#eef2ff; color:#1e40af; border:1px solid #c7d2fe; }
-    .callout { background:#f8fafc; border-left:4px solid var(--accent); padding:.75rem .9rem; border-radius:8px; }
-    .muted { color:var(--muted); }
-    .spacer { height: .5rem; }
+    :root { --shade:#b9c1cc; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height:1.45; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 8px; }
+    details { margin: 12px 0 0; border:1px solid #e5e7eb; border-radius:10px; padding: .6rem .8rem; }
+    summary { cursor: pointer; font-weight: 700; }
+    ul { margin: .5rem 0 0; padding-left: 1.2rem; }
+    li { margin: .25rem 0; }
+    .muted { opacity: .7; font-size: .93rem; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Stack It!</h1>
-      <p class="note">Remember to think about The Learning Space!</p>
-    </header>
+  <main class="wrap">
+    <!-- Game (top of page, no header above it) -->
+    <script src="./hanoi.custom.js?v=1.0.0"></script>
 
-    <!-- Directions -->
-    <section class="card grid two">
-      <div>
-        <p class="kicker">Play the game!</p>
-        <ul class="list-tight">
-          <li>Choose the number of discs (3–8) using the arrows.</li>
-          <li>Drag <em>only the top disc</em> from any stack.</li>
-          <li><strong>You can’t</strong> place a larger disc on a smaller one.</li>
-          <li><strong>Goal:</strong> move the whole stack onto <em>one target pole</em> (middle or right).</li>
-          <li>Click <em>Restart</em> to try a new disc count or improve your strategy.</li>
-        </ul>
-
-        <div class="spacer"></div>
-        <div class="callout">
-          <strong>Challenges</strong>
-          <ul class="list-tight">
-            <li>Can you solve it with 3? 4? 5? … 8 discs?</li>
-            <li>Can you do it <em>efficiently</em>? Track your moves and try to improve.</li>
-            <li>How does the difficulty change as discs increase?</li>
-          </ul>
-        </div>
-      </div>
-
-      <div>
-        <p class="kicker">Record your results <span class="badge">Student Data Table</span></p>
-        <table class="table" aria-label="Record your moves">
-          <thead>
-            <tr><th>Discs (n)</th><th>Your moves</th><th>Best attempt</th><th>Conjectured minimum</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>3</td><td></td><td></td><td></td></tr>
-            <tr><td>4</td><td></td><td></td><td></td></tr>
-            <tr><td>5</td><td></td><td></td><td></td></tr>
-            <tr><td>6</td><td></td><td></td><td></td></tr>
-            <tr><td>7</td><td></td><td></td><td></td></tr>
-            <tr><td>8</td><td></td><td></td><td></td></tr>
-          </tbody>
-        </table>
-        <p class="muted" style="margin:.35rem 0 0;">Tip: After each solve, jot down your move count from the blue “Moves” indicator.</p>
-      </div>
-    </section>
-
-    <div class="spacer"></div>
-
-    <!-- Prompts for mathematical thinking -->
-    <section class="card">
-      <p class="kicker">Math prompts &amp; investigations</p>
-      <ul class="list-tight">
-        <li><strong>What are the rules?</strong> Restate them in your own words.</li>
-        <li><strong>What can/can’t you do?</strong> Give examples of legal and illegal moves.</li>
-        <li><strong>Predict then test:</strong> Before you start with n discs, estimate the number of moves you’ll need. Were you close?</li>
-        <li><strong>Notice &amp; Wonder:</strong> What patterns do you notice as n grows? What do you wonder?</li>
-        <li><strong>Look for structure:</strong> How is the n-disc puzzle built from the (n−1)-disc puzzle?</li>
-        <li><strong>Conjecture a rule:</strong> Find a general relationship between <em>n</em> and a “best possible” move count. Justify your conjecture.</li>
-        <li><strong>Efficiency:</strong> Describe a strategy that always succeeds. Why does it avoid illegal moves?</li>
-        <li><strong>Representation:</strong> Draw a diagram or write pseudocode for your method.</li>
-        <li><strong>Compare strategies:</strong> Are there different strategies that result in the same minimal moves? Explain.</li>
-        <li><strong>Extension:</strong> If either the middle or right pole is allowed as a target, does the minimum change? Why or why not?</li>
-        <li><strong>Generalize:</strong> How many moves would it take for 9, 10, or 20 discs? Explain your reasoning without playing.</li>
-      </ul>
-    </section>
-
-    <div class="spacer"></div>
-
-    <!-- Optional teacher key (hidden from students unless opened) -->
+    <!-- Optional, collapsed-by-default guidance (below the game) -->
     <details>
-      <summary>Teacher notes (hidden)</summary>
-      <ul class="list-tight">
-        <li><strong>Minimum moves (classic target on one pole):</strong> \(2^{\,n}-1\). Invite students to notice doubling +1 across rows (3→7→15…). Connect to recursive structure: solve (n−1), move largest, solve (n−1).</li>
-        <li><strong>Middle or right as target:</strong> Minimum remains \(2^{\,n}-1\) (choice of target doesn’t change optimal count).</li>
-        <li><strong>Talk moves:</strong> “Say more…”, “What do you notice that makes you say that?”, “Can someone restate their idea?”</li>
-        <li><strong>Productive struggle:</strong> Encourage students to start with n=3, then 4, then predict 5 before playing.</li>
-        <li><strong>Evidence:</strong> Ask for a diagram or step pattern for 3→4→5 showing the recursive “build from smaller” idea.</li>
-        <li><strong>Extensions:</strong> binary counting connection; invariant reasoning; write & justify a recurrence \(T(n)=2T(n-1)+1\); optional proof by induction.</li>
+      <summary>Quick rules & challenges (optional)</summary>
+      <ul>
+        <li>Drag <em>only the top disc</em>. You can’t place a bigger disc on a smaller disc.</li>
+        <li><strong>Goal:</strong> move the whole stack to one pole (middle or right).</li>
+        <li class="muted">Try with 3–8 discs. Track your Moves and see how efficient you can be.</li>
+      </ul>
+      <ul>
+        <li>How many moves did it take for each disc count?</li>
+        <li>What patterns do you notice?</li>
+        <li>What do you think the <em>minimum</em> number of moves is for a given number of discs?</li>
       </ul>
     </details>
-
-    <div class="spacer"></div>
-
-    <!-- Game injected by script below -->
-    <script src="./hanoi.custom.js?v=1.0.0"></script>
-  </div>
+  </main>
 </body>
 </html>
